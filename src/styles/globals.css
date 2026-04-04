@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand Colors (Laranja FF7E05) */
+  --color-brand-500: #ff7e05;
+  --color-brand-600: #e67204;
+
+  /* Neutrals baseadas no seu background 212121 */
+  --color-zinc-950: #1a1a1a;
+  --color-zinc-900: #212121; /* Seu Background */
+  --color-zinc-800: #2e2e2e; /* Seu Header */
+  --color-zinc-700: #454545; /* Sua Borda */
+  --color-zinc-400: #bebebe; /* Sua Fonte */
+
+  /* Aliases Semânticos */
+  --color-primary: var(--color-brand-500);
+  --color-background: var(--color-zinc-900);
+  --color-header: var(--color-zinc-800);
+  --color-border-button: var(--color-zinc-700);
+  --color-text-body: var(--color-zinc-400);
+}
+
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-text-body);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilitários customizados */
+.glass {
+  background: rgba(46, 46, 46, 0.4);
+  backdrop-filter: blur(12px);
+}
