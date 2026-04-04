@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Search } from 'lucide-react';
 import { Container } from './container';
 import { Poppins } from 'next/font/google';
+import { Button } from '../ui/button';
 
 const poppins = Poppins({
   weight: ['700'],
@@ -26,7 +27,7 @@ export function Header() {
             <input
               type="text"
               placeholder="Buscar..."
-              className="w-full rounded-[500px] border border-[#454545] bg-[#212121]/50 py-3 pr-12 pl-6 text-[#BEBEBE] transition-all outline-none placeholder:text-[#BEBEBE]/40 focus:border-[#FF7E05]"
+              className="w-full rounded-3xl border border-[#454545] bg-[#212121]/50 py-3 pr-12 pl-6 text-[#BEBEBE] transition-all outline-none placeholder:text-[#BEBEBE]/40 focus:border-[#FF7E05]"
             />
             <Search
               size={18}
@@ -40,7 +41,7 @@ export function Header() {
               href="/events/create"
               className="text-sm font-semibold tracking-wide text-[#BEBEBE] uppercase transition-colors hover:text-[#FF7E05]"
             >
-              Criar Evento
+              <Button>Criar evento</Button>
             </Link>
           </nav>
         </div>
