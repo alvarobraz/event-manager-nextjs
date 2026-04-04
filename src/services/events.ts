@@ -1,14 +1,14 @@
 import { api } from './api';
 
-export interface EventWithDetails extends Event {
-  bannerImage?: { url: string };
-  _count?: { registrations: number };
-}
+import { Event as DatabaseEvent } from '@/types';
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface EventWithDetails extends DatabaseEvent {}
 
 export const eventService = {
   getAll: async () => {
-    const { data } = await api.get<EventWithDetails[]>('/events');
-    return data;
+    const { data } = await api.get<{ events: EventWithDetails[] }>('/events');
+    return data.events;
   },
   getById: async (id: string) => {
     const { data } = await api.get<EventWithDetails>(`/events/${id}`);
