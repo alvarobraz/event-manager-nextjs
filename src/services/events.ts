@@ -22,4 +22,20 @@ export const eventService = {
     const { data } = await api.post('/events', payload);
     return data;
   },
+
+  createParticipant: async (data: {
+    name: string;
+    email: string;
+    phone: string;
+  }) => {
+    const response = await api.post<{ id: string }>('/participants', data);
+    return response.data;
+  },
+
+  subscribeToEvent: async (eventId: string, participantId: string) => {
+    const response = await api.post(`/events/${eventId}/participants`, {
+      participantId,
+    });
+    return response.data;
+  },
 };
