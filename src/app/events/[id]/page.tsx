@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Calendar, MapPin, Users, ArrowLeft } from 'lucide-react';
+import { Calendar, MapPin, Users, ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { eventService } from '@/services/events';
@@ -10,15 +10,28 @@ import { ParticipantsTable } from '@/components/events/participants-table';
 
 interface EventPageProps {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
-export default async function EventDetailsPage({ params }: EventPageProps) {
+export default async function EventDetailsPage({
+  params,
+  searchParams,
+}: EventPageProps) {
   const { id } = await params;
-  const data = await eventService.getById(id).catch(() => null);
+  const { page } = await searchParams;
 
-  if (!data?.event) {
+  const currentPage = Number(page) || 1;
+  const pageSize = 10;
+
+  const data = await eventService
+    .getById(id, currentPage, pageSize)
+    .catch(() => null);
+
+  if (!data || !data.event) {
     notFound();
   }
+
+  const hasNextPage = data.participants.length === pageSize;
 
   return (
     <div className="animate-in fade-in py-8 duration-500">
@@ -73,6 +86,38 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
             </div>
 
             <ParticipantsTable participants={data.participants} />
+            <div className="mt-6 flex items-center justify-between border-t border-[#454545] pt-4">
+              {/* Botão Anterior - Alinhado à Esquerda */}
+              <Link
+                href={`/events/${id}?page=${currentPage - 1}`}
+                className={`flex items-center gap-2 rounded-md border border-[#454545] px-4 py-2 text-xs font-bold uppercase transition-all ${
+                  currentPage <= 1
+                    ? 'pointer-events-none bg-[#212121] opacity-20'
+                    : 'text-[#BEBEBE] hover:bg-[#454545] active:scale-95'
+                }`}
+              >
+                <ArrowLeft size={14} />
+                Anterior
+              </Link>
+
+              {/* Indicador de Página - Centralizado (opcional, ou apenas texto) */}
+              <span className="pt-0 text-[10px] font-bold tracking-widest text-[#FF7E05] uppercase">
+                Página {currentPage}
+              </span>
+
+              {/* Botão Próxima - Alinhado à Direita */}
+              <Link
+                href={`/events/${id}?page=${currentPage + 1}`}
+                className={`flex items-center gap-2 rounded-md border border-[#454545] px-4 py-2 text-xs font-bold uppercase transition-all ${
+                  !hasNextPage
+                    ? 'pointer-events-none bg-[#212121] opacity-20'
+                    : 'text-[#BEBEBE] hover:bg-[#454545] active:scale-95'
+                }`}
+              >
+                Próxima
+                <ArrowRight size={14} />
+              </Link>
+            </div>
           </section>
         </div>
 

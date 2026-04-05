@@ -10,11 +10,13 @@ export const eventService = {
     const { data } = await api.get<{ events: EventWithDetails[] }>('/events');
     return data.events;
   },
-  getById: async (id: string) => {
+  getById: async (id: string, page = 1, pageSize = 10) => {
     const { data } = await api.get<{
       event: EventWithDetails;
       participants: Participant[];
-    }>(`/events/${id}/participants`);
+    }>(`/events/${id}/participants`, {
+      params: { page, pageSize },
+    });
 
     return data;
   },
