@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { eventService } from '@/services/events';
 import { formatDate } from '@/utils/formatDate';
 import { RegistrationForm } from '@/components/events/registration-form';
+import { ParticipantsTable } from '@/components/events/participants-table';
 
 interface EventPageProps {
   params: Promise<{ id: string }>;
@@ -13,9 +14,9 @@ interface EventPageProps {
 
 export default async function EventDetailsPage({ params }: EventPageProps) {
   const { id } = await params;
-  const event = await eventService.getById(id).catch(() => null);
+  const data = await eventService.getById(id).catch(() => null);
 
-  if (!event) {
+  if (!data?.event) {
     notFound();
   }
 
@@ -37,10 +38,10 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
         {/* Coluna Principal (Conteúdo) */}
         <div className="space-y-6 lg:col-span-2">
           <div className="relative h-100 w-full overflow-hidden rounded-xl border border-[#454545] bg-[#2E2E2E]">
-            {event.bannerImage?.url ? (
+            {data?.event.bannerImage?.url ? (
               <Image
-                src={event.bannerImage.url}
-                alt={event.name}
+                src={data?.event.bannerImage.url}
+                alt={data?.event.name}
                 fill
                 className="object-cover"
                 priority
@@ -54,12 +55,25 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
 
           <div className="space-y-4">
             <h1 className="text-4xl font-bold tracking-tight text-[#FF7E05] uppercase">
-              {event.name}
+              {data?.event.name}
             </h1>
             <p className="text-lg leading-relaxed whitespace-pre-wrap text-[#BEBEBE]">
-              {event.description}
+              {data?.event.description}
             </p>
           </div>
+
+          <section className="border-t border-[#454545] pt-8">
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-2xl font-bold tracking-tight text-[#BEBEBE] uppercase">
+                Quem vai participar
+              </h2>
+              <span className="rounded-full bg-[#454545] px-3 py-1 text-xs font-bold text-[#FF7E05]">
+                {data.participants.length} TOTAL
+              </span>
+            </div>
+
+            <ParticipantsTable participants={data.participants} />
+          </section>
         </div>
 
         {/* Coluna Lateral (Infos & Inscrição) */}
@@ -77,8 +91,11 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                   <p className="text-xs text-[#BEBEBE]/50 uppercase">
                     Data do Evento
                   </p>
-                  <p className="font-medium text-[#BEBEBE]">
-                    {formatDate(event.date)}
+                  <p
+                    className="font-medium text-[#BEBEBE]"
+                    suppressHydrationWarning
+                  >
+                    {formatDate(data?.event.date ?? '')}
                   </p>
                 </div>
               </div>
@@ -102,7 +119,9 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                     Inscritos
                   </p>
                   <p className="font-medium text-[#BEBEBE]">
-                    {event._count?.registrations ?? 0} pessoas confirmadas
+                    {data?.participants.length === 1
+                      ? '1 pessoa confirmada'
+                      : `${data?.participants.length ?? 0} pessoas confirmadas`}
                   </p>
                 </div>
               </div>

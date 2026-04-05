@@ -16,7 +16,7 @@ export const eventService = {
       participants: Participant[];
     }>(`/events/${id}/participants`);
 
-    return data.event;
+    return data;
   },
   create: async (payload: FormData) => {
     const { data } = await api.post('/events', payload);
