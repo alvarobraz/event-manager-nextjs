@@ -20,6 +20,12 @@ export const eventService = {
 
     return data;
   },
+  getTotalParticipants: async (id: string) => {
+    const { data } = await api.get<{ participants: Participant[] }>(
+      `/events/${id}/participants`
+    );
+    return data.participants.length;
+  },
   create: async (payload: FormData) => {
     const { data } = await api.post('/events', payload);
     return data;

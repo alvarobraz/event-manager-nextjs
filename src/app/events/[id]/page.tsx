@@ -23,9 +23,10 @@ export default async function EventDetailsPage({
   const currentPage = Number(page) || 1;
   const pageSize = 10;
 
-  const data = await eventService
-    .getById(id, currentPage, pageSize)
-    .catch(() => null);
+  const [data, totalCount] = await Promise.all([
+    eventService.getById(id, currentPage, pageSize).catch(() => null),
+    eventService.getTotalParticipants(id).catch(() => 0),
+  ]);
 
   if (!data || !data.event) {
     notFound();
@@ -81,7 +82,7 @@ export default async function EventDetailsPage({
                 Quem vai participar
               </h2>
               <span className="rounded-full bg-[#454545] px-3 py-1 text-xs font-bold text-[#FF7E05]">
-                {data.participants.length} TOTAL
+                {totalCount} TOTAL
               </span>
             </div>
 
@@ -164,9 +165,9 @@ export default async function EventDetailsPage({
                     Inscritos
                   </p>
                   <p className="font-medium text-[#BEBEBE]">
-                    {data?.participants.length === 1
+                    {totalCount === 1
                       ? '1 pessoa confirmada'
-                      : `${data?.participants.length ?? 0} pessoas confirmadas`}
+                      : `${totalCount ?? 0} pessoas confirmadas`}
                   </p>
                 </div>
               </div>
