@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { eventService } from '@/services/events';
 import { formatDate } from '@/utils/formatDate';
-import { Button } from '@/components/ui/button';
+import { RegistrationForm } from '@/components/events/registration-form';
 
 interface EventPageProps {
   params: Promise<{ id: string }>;
@@ -63,13 +63,14 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
         </div>
 
         {/* Coluna Lateral (Infos & Inscrição) */}
-        <aside className="space-y-6">
-          <div className="sticky top-24 rounded-xl border border-[#454545] bg-[#2E2E2E] p-6">
+        <aside className="h-fit space-y-6 lg:sticky lg:top-8">
+          {/* Card 1: Detalhes Rápidos */}
+          <div className="rounded-xl border border-[#454545] bg-[#2E2E2E] p-6">
             <h2 className="mb-6 border-b border-[#454545] pb-2 text-xl font-bold tracking-wider text-[#FF7E05] uppercase">
               Detalhes
             </h2>
 
-            <div className="mb-8 space-y-4">
+            <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Calendar className="shrink-0 text-[#FF7E05]" size={20} />
                 <div>
@@ -82,7 +83,6 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                 </div>
               </div>
 
-              {/* Exemplo de Local - Ajuste conforme seu schema */}
               <div className="flex items-start gap-3">
                 <MapPin className="shrink-0 text-[#FF7E05]" size={20} />
                 <div>
@@ -107,9 +107,20 @@ export default async function EventDetailsPage({ params }: EventPageProps) {
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Placeholder para o Form de Inscrição que faremos no próximo passo */}
-            <Button className="h-12 w-full">Quero me inscrever</Button>
+          {/* Card 2: Formulário de Inscrição */}
+          <div className="rounded-xl border border-[#454545] bg-[#2E2E2E] p-6">
+            <h2 className="mb-6 border-b border-[#454545] pb-2 text-xl font-bold tracking-wider text-[#FF7E05] uppercase">
+              Inscrição
+            </h2>
+
+            {/* Chamada do seu componente de formulário */}
+            <RegistrationForm eventId={id} />
+
+            <p className="mt-4 text-center text-[10px] tracking-widest text-[#BEBEBE]/40 uppercase">
+              Vagas limitadas
+            </p>
           </div>
         </aside>
       </div>

@@ -4,6 +4,7 @@ import '../styles/globals.css';
 
 import { Header } from '@/components/layout/header';
 import { Container } from '@/components/layout/container';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,7 +26,10 @@ export default function RootLayout({
         <Header />
 
         <main>
-          <Container>{children}</Container>
+          <Container>
+            {children}
+            <Toaster richColors position="bottom-right" theme="dark" />
+          </Container>
         </main>
       </body>
     </html>

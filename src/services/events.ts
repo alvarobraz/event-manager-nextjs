@@ -28,7 +28,10 @@ export const eventService = {
     email: string;
     phone: string;
   }) => {
-    const response = await api.post<{ id: string }>('/participants', data);
+    const response = await api.post<{ participant_id: string }>(
+      '/participants',
+      data
+    );
     return response.data;
   },
 
