@@ -4,6 +4,7 @@ import { UploadCloud, X } from 'lucide-react';
 import Image from 'next/image';
 import { ImageUploadProps } from '@/types';
 import { useImageUpload } from '@/hooks/use-image-upload';
+import { Input } from '../ui/input';
 
 export function ImageUpload({ onUploadSuccess, onRemove }: ImageUploadProps) {
   const { preview, isUploading, handleFileChange, removeImage } =
@@ -62,7 +63,7 @@ export function ImageUpload({ onUploadSuccess, onRemove }: ImageUploadProps) {
                 JPG ou PNG (Recomendado 1200x600)
               </span>
             </div>
-            <input
+            <Input
               type="file"
               className="hidden"
               accept="image/*"

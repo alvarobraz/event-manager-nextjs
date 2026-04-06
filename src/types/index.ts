@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode } from 'react';
 import { Event as DatabaseEvent } from '@/types';
 
 export interface ContainerProps {
@@ -98,6 +98,11 @@ export interface HomeProps {
 export interface GetEventPageDataParams {
   id: string;
   page?: string;
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
 }
 
 export type CreateEventInput = Omit<

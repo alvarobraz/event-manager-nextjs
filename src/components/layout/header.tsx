@@ -6,6 +6,7 @@ import { Container } from './container';
 import { Poppins } from 'next/font/google';
 import { CreateEventModal } from '../events/create-event-modal';
 import { useHeader } from '@/hooks/use-header';
+import { Input } from '../ui/input';
 
 const poppins = Poppins({
   weight: ['700'],
@@ -30,12 +31,12 @@ export function Header() {
           {/* Search - Renderização Condicional via Hook */}
           {showSearch ? (
             <div className="group animate-in fade-in zoom-in-95 relative max-w-xl flex-1 duration-300">
-              <input
+              <Input
                 type="text"
                 placeholder="Buscar eventos..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                className="w-full rounded-3xl border border-[#454545] bg-[#212121]/50 py-3 pr-12 pl-6 text-[#BEBEBE] transition-all outline-none placeholder:text-[#BEBEBE]/40 focus:border-[#FF7E05] focus:bg-[#212121]"
+                className="rounded-3xl bg-[#212121]/50 py-3 pr-12 pl-6 placeholder:text-[#BEBEBE]/40 focus:bg-[#212121]"
               />
 
               <Search
