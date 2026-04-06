@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Search } from 'lucide-react';
 import { Container } from './container';
 import { Poppins } from 'next/font/google';
-import { Button } from '../ui/button';
+import { CreateEventModal } from '../events/create-event-modal';
 
 const poppins = Poppins({
   weight: ['700'],
@@ -37,12 +37,7 @@ export function Header() {
 
           {/* Botão */}
           <nav>
-            <Link
-              href="/events/create"
-              className="text-sm font-semibold tracking-wide text-[#BEBEBE] uppercase transition-colors hover:text-[#FF7E05]"
-            >
-              <Button>Criar evento</Button>
-            </Link>
+            <CreateEventModal />
           </nav>
         </div>
       </Container>

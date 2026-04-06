@@ -1,13 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Users } from 'lucide-react';
-import { EventWithDetails } from '@/services/events';
+
 import { formatDate } from '@/utils/formatDate';
 import { Button } from '@/components/ui/button';
-
-interface EventCardProps {
-  event: EventWithDetails;
-}
+import { EventCardProps } from '@/types';
 
 export function EventCard({ event }: EventCardProps) {
   return (

@@ -1,9 +1,6 @@
 import { api } from './api';
 
-import { Event as DatabaseEvent, Participant } from '@/types';
-
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface EventWithDetails extends DatabaseEvent {}
+import { CreateEventPayload, EventWithDetails, Participant } from '@/types';
 
 export const eventService = {
   getAll: async () => {
@@ -26,7 +23,7 @@ export const eventService = {
     );
     return data.participants.length;
   },
-  create: async (payload: FormData) => {
+  create: async (payload: CreateEventPayload) => {
     const { data } = await api.post('/events', payload);
     return data;
   },

@@ -2,12 +2,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { eventService } from '@/services/events';
-
-interface RegistrationData {
-  name: string;
-  email: string;
-  phone: string;
-}
+import { RegistrationData } from '@/types';
 
 export function useRegistration(eventId: string) {
   const [isLoading, setIsLoading] = useState(false);

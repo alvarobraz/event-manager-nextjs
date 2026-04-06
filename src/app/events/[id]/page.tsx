@@ -7,11 +7,7 @@ import { eventService } from '@/services/events';
 import { formatDate } from '@/utils/formatDate';
 import { RegistrationForm } from '@/components/events/registration-form';
 import { ParticipantsTable } from '@/components/events/participants-table';
-
-interface EventPageProps {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ page?: string }>;
-}
+import { EventPageProps } from '@/types';
 
 export default async function EventDetailsPage({
   params,

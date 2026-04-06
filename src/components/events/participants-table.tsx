@@ -1,9 +1,5 @@
 import { User } from 'lucide-react';
-import { Participant } from '@/types';
-
-interface ParticipantsTableProps {
-  participants: Participant[];
-}
+import { ParticipantsTableProps } from '@/types';
 
 export function ParticipantsTable({ participants }: ParticipantsTableProps) {
   if (participants.length === 0) {
