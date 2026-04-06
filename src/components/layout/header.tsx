@@ -1,12 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { Search } from 'lucide-react';
+import { Suspense } from 'react';
 import { Container } from './container';
 import { Poppins } from 'next/font/google';
 import { CreateEventModal } from '../events/create-event-modal';
-import { useHeader } from '@/hooks/use-header';
-import { Input } from '../ui/input';
+import { SearchField } from '../ui/searchField';
 
 const poppins = Poppins({
   weight: ['700'],
@@ -14,8 +13,6 @@ const poppins = Poppins({
 });
 
 export function Header() {
-  const { showSearch, searchValue, setSearchValue } = useHeader();
-
   return (
     <header className="sticky top-0 z-50 flex h-20 items-center border-b border-[#454545] bg-linear-to-r from-[#2e2e2e] to-[#3a3a3a] px-6">
       <Container>
@@ -28,25 +25,9 @@ export function Header() {
             Eventos
           </Link>
 
-          {/* Search - Renderização Condicional via Hook */}
-          {showSearch ? (
-            <div className="group animate-in fade-in zoom-in-95 relative max-w-xl flex-1 duration-300">
-              <Input
-                type="text"
-                placeholder="Buscar eventos..."
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                className="rounded-3xl bg-[#212121]/50 py-3 pr-12 pl-6 placeholder:text-[#BEBEBE]/40 focus:bg-[#212121]"
-              />
-
-              <Search
-                size={18}
-                className="absolute top-1/2 right-4 -translate-y-1/2 text-[#BEBEBE] transition-colors group-focus-within:text-[#FF7E05] group-hover:text-[#FF7E05]"
-              />
-            </div>
-          ) : (
-            <div className="flex-1" />
-          )}
+          <Suspense fallback={<div className="flex-1" />}>
+            <SearchField />
+          </Suspense>
 
           {/* Ações */}
           <nav className="flex items-center gap-4">

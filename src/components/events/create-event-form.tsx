@@ -3,9 +3,9 @@
 import { Controller } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea'; // Importando o novo componente
 import { ImageUpload } from './image-upload';
 import { useCreateEvent } from '@/hooks/use-create-event';
-import { cn } from '@/utils/utils';
 
 export function CreateEventForm({ onSuccess }: { onSuccess: () => void }) {
   const { form, bannerImageId, onSubmit, isSubmitting, errors } =
@@ -53,26 +53,14 @@ export function CreateEventForm({ onSuccess }: { onSuccess: () => void }) {
         </div>
       </div>
 
-      <div className="space-y-1">
-        <label className="block text-xs font-bold text-[#BEBEBE]/60 uppercase">
-          Descrição
-        </label>
-        <textarea
-          {...form.register('description')}
-          rows={3}
-          className={cn(
-            'w-full resize-none rounded-md border bg-[#212121] px-4 py-2 text-[#BEBEBE] transition-colors outline-none',
-            errors.description
-              ? 'border-red-500 focus:border-red-500'
-              : 'border-[#454545] focus:border-[#FF7E05]'
-          )}
-        />
-        {errors.description && (
-          <span className="block text-[10px] font-bold text-red-500 uppercase">
-            {errors.description.message}
-          </span>
-        )}
-      </div>
+      {/* Textarea */}
+      <Textarea
+        label="Descrição"
+        placeholder="Conte mais sobre o evento..."
+        rows={3}
+        error={errors.description?.message}
+        {...form.register('description')}
+      />
 
       <Button
         type="submit"
