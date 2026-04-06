@@ -6,7 +6,7 @@ import { ParticipantsTable } from '@/components/events/participants-table';
 import { Pagination } from '@/components/ui/pagination';
 import { EventHero } from '@/components/events/event-hero';
 import { EventInfoSidebar } from '@/components/events/event-info-sidebar';
-import { getEventPageData } from '@/api/get-event-page-data'; // Import da nova função
+import { getEventPageData } from '@/api/get-event-page-data';
 import { EventPageProps } from '@/types';
 
 export default async function EventDetailsPage({
