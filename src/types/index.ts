@@ -95,6 +95,11 @@ export interface HomeProps {
   searchParams: Promise<{ q?: string }>;
 }
 
+export interface GetEventPageDataParams {
+  id: string;
+  page?: string;
+}
+
 export type CreateEventInput = Omit<
   Event,
   'id' | 'createdAt' | 'bannerImage' | 'registrations' | '_count'

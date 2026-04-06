@@ -1,18 +1,11 @@
-import { eventService } from '@/services/events';
+import { getHomeData } from '@/api/get-home-data';
 import { EventCard } from '@/components/events/event-card';
 import { HomeProps } from '@/types';
 
 export default async function Home({ searchParams }: HomeProps) {
   const { q } = await searchParams;
-  const allEvents = await eventService.getAll().catch(() => []);
 
-  const events = q
-    ? allEvents.filter(
-        (event) =>
-          event.name.toLowerCase().includes(q.toLowerCase()) ||
-          event.description.toLowerCase().includes(q.toLowerCase())
-      )
-    : allEvents;
+  const { events, query } = await getHomeData({ q });
 
   return (
     <div className="py-8">
@@ -41,8 +34,8 @@ export default async function Home({ searchParams }: HomeProps) {
       ) : (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#454545] bg-[#2E2E2E]/30 py-20">
           <p className="font-medium text-[#BEBEBE]">
-            {q
-              ? `Nenhum evento para "${q}"`
+            {query
+              ? `Nenhum evento para "${query}"`
               : 'Nenhum evento encontrado no momento.'}
           </p>
           <span className="mt-1 text-xs text-[#BEBEBE]/50">
