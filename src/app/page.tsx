@@ -1,17 +1,30 @@
 import { eventService } from '@/services/events';
 import { EventCard } from '@/components/events/event-card';
+import { HomeProps } from '@/types';
 
-export default async function Home() {
-  const events = await eventService.getAll().catch(() => []);
+export default async function Home({ searchParams }: HomeProps) {
+  const { q } = await searchParams;
+  const allEvents = await eventService.getAll().catch(() => []);
 
-  console.log('events: ', JSON.stringify(events));
+  const events = q
+    ? allEvents.filter(
+        (event) =>
+          event.name.toLowerCase().includes(q.toLowerCase()) ||
+          event.description.toLowerCase().includes(q.toLowerCase())
+      )
+    : allEvents;
 
   return (
     <div className="py-8">
+      {q && (
+        <p className="mb-4 text-xs tracking-widest text-[#BEBEBE]/40 uppercase">
+          Resultados para: <span className="text-[#FF7E05]">{q}</span>
+        </p>
+      )}
       {/* Cabeçalho da Seção */}
       <div className="mb-10 flex flex-col gap-2 border-l-4 border-[#FF7E05] pl-6">
         <h1 className="text-3xl font-bold tracking-tight text-[#FF7E05] uppercase">
-          Próximos Eventos
+          {q ? 'Eventos Encontrados' : 'Próximos Eventos'}
         </h1>
         <p className="text-sm text-[#BEBEBE]/60">
           Explore e participe dos melhores eventos de tecnologia e inovação.
@@ -28,7 +41,9 @@ export default async function Home() {
       ) : (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#454545] bg-[#2E2E2E]/30 py-20">
           <p className="font-medium text-[#BEBEBE]">
-            Nenhum evento encontrado no momento.
+            {q
+              ? `Nenhum evento para "${q}"`
+              : 'Nenhum evento encontrado no momento.'}
           </p>
           <span className="mt-1 text-xs text-[#BEBEBE]/50">
             Tente novamente mais tarde ou crie um novo evento.

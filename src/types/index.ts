@@ -91,6 +91,10 @@ export interface CreateEventPayload {
   bannerImageId: string;
 }
 
+export interface HomeProps {
+  searchParams: Promise<{ q?: string }>;
+}
+
 export type CreateEventInput = Omit<
   Event,
   'id' | 'createdAt' | 'bannerImage' | 'registrations' | '_count'
