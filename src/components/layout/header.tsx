@@ -14,9 +14,9 @@ const poppins = Poppins({
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 flex h-20 items-center border-b border-[#454545] bg-linear-to-r from-[#2e2e2e] to-[#3a3a3a] px-6">
+    <header className="sticky top-0 z-50 flex min-h-20 items-center border-b border-[#454545] bg-linear-to-r from-[#2e2e2e] to-[#3a3a3a] px-6 py-4 md:h-20 md:py-0">
       <Container>
-        <div className="flex w-full items-center justify-between gap-8">
+        <div className="flex w-full flex-col items-center justify-between gap-4 md:flex-row md:gap-8">
           {/* Logo */}
           <Link
             href="/"
@@ -25,9 +25,12 @@ export function Header() {
             Eventos
           </Link>
 
-          <Suspense fallback={<div className="flex-1" />}>
-            <SearchField />
-          </Suspense>
+          {/* SearchField */}
+          <div className="w-full flex-1 md:w-auto">
+            <Suspense fallback={<div className="flex-1" />}>
+              <SearchField />
+            </Suspense>
+          </div>
 
           {/* Ações */}
           <nav className="flex items-center gap-4">
