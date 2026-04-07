@@ -81,7 +81,7 @@ A arquitetura foi pensada para manter a separação de responsabilidades, facili
 
 ```bash
 ## Clone o projeto
-$ git clone [https://github.com/alvarobraz/event-manager-nextjs](https://github.com/alvarobraz/event-manager-nextjs)
+$ git clone https://github.com/alvarobraz/event-manager-nextjs
 
 ## Acesse a pasta
 $ cd event-manager-nextjs
