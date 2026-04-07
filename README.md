@@ -61,7 +61,7 @@ O projeto utiliza tecnologias de ponta para garantir uma interface rápida e res
 - **Zod** - Validação de esquemas de dados e contratos da API.
 - **Sonner** - Sistema de notificações (toasts) para feedback do usuário.
 
-## :structure: Estrutura do Projeto
+## Estrutura do Projeto
 
 A arquitetura foi pensada para manter a separação de responsabilidades, facilitando a manutenção e escala:
 
@@ -81,7 +81,7 @@ A arquitetura foi pensada para manter a separação de responsabilidades, facili
 
 ```bash
 ## Clone o projeto
-$ git clone [https://github.com/alvarobraz/event-manager-nextjs](https://github.com/alvarobraz/event-manager-nextjs)
+$ git clone https://github.com/alvarobraz/event-manager-nextjs
 
 ## Acesse a pasta
 $ cd event-manager-nextjs
