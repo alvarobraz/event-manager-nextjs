@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <a href="https://github.com/alvarobraz/event-manager-nextjs" target="blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg" width="120" alt="Next.js Logo" />
+  </a>
+</p>
 
-## Getting Started
+<h1 align="center">Event Manager - Interface 🌐</h1>
 
-First, run the development server:
+<p align="center">
+  Interface de gerenciamento de eventos, desenvolvida com Next.js 15+, React 19 e Tailwind CSS.
+</p>
+
+<p align="center">
+  <img alt="Repo size" src="https://img.shields.io/github/repo-size/alvarobraz/event-manager-nextjs"/>
+
+  <a href="https://nextjs.org/">
+    <img alt="Next.js Version" src="https://img.shields.io/badge/next.js-15.0+-black">
+  </a>
+
+  <a href="https://www.linkedin.com/in/alvarobraz/">
+    <img alt="Made by alvarobraz" src="https://img.shields.io/badge/made%20by-alvarobraz-%237519C1">
+  </a>
+
+  <a href="https://github.com/alvarobraz/event-manager-nextjs">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alvarobraz/event-manager-nextjs">
+  </a>
+
+  <img alt="License" src="https://img.shields.io/github/license/alvarobraz/event-manager-nextjs">
+</p>
+
+---
+
+<p align="center">
+  <a href="#dart-sobre">Sobre</a> &#xa0; | &#xa0; 
+  <a href="#rocket-tecnologias">Tecnologias</a> &#xa0; | &#xa0;
+  <a href="#structure-estrutura">Estrutura</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-começando">Começando</a>
+</p>
+
+<br>
+
+## :dart: Sobre
+
+Esta é a camada de **Frontend** do ecossistema Event Manager. Uma aplicação desenvolvida para oferecer uma experiência fluida no gerenciamento de eventos, permitindo a visualização detalhada, inscrição de participantes e criação de novos eventos com upload de imagens.
+
+## :rocket: Tecnologias
+
+O projeto utiliza tecnologias de ponta para garantir uma interface rápida e responsiva:
+
+### Core & UI
+
+- **Next.js 15 (App Router)** - Framework para renderização híbrida.
+- **React 19** - Biblioteca base para construção da interface.
+- **Tailwind CSS v4** - Estilização moderna com foco em performance.
+- **Lucide React** - Ícones leves e consistentes.
+
+### Data Fetching & Forms
+
+- **Axios** - Cliente HTTP para comunicação com a API Backend.
+- **React Hook Form** - Gerenciamento de estado de formulários.
+- **Zod** - Validação de esquemas de dados e contratos da API.
+- **Sonner** - Sistema de notificações (toasts) para feedback do usuário.
+
+## :structure: Estrutura do Projeto
+
+A arquitetura foi pensada para manter a separação de responsabilidades, facilitando a manutenção e escala:
+
+- **`/src/api` & `/src/services`**: Camada de persistência e comunicação externa utilizando Axios.
+- **`/src/hooks`**: Lógica de negócio e estado encapsulados em Hooks customizados (Ex: `useRegistration`, `useCreateEvent`).
+- **`/src/components`**: Componentes de UI divididos por domínio (`events`, `layout`, `ui`).
+- **`/src/schemas`**: Definição de contratos e validações utilizando Zod.
+- **`/src/app`**: Roteamento baseado em arquivos (Next.js App Router).
+
+## :white_check_mark: Requerimentos
+
+- **Node.js 20.x** ou superior
+- **NPM** (ou gerenciador de sua preferência)
+- **API Backend** devidamente configurada
+
+## :checkered_flag: Começando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Clone o projeto
+$ git clone [https://github.com/alvarobraz/event-manager-nextjs](https://github.com/alvarobraz/event-manager-nextjs)
+
+## Acesse a pasta
+$ cd event-manager-nextjs
+
+## Instale as dependências
+$ npm install
+
+## Configure seu .env (NEXT_PUBLIC_API_URL)
+$ cp .env.example .env
+
+## Inicie o servidor de desenvolvimento
+$ npm run dev
+
+## A aplicação estará disponível em http://localhost:3000.
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
