@@ -27,7 +27,7 @@ export function CreateEventModal() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="mt-38 mb-8 flex items-center justify-between border-b border-[#454545] pb-4">
+              <div className="mt-8 mb-8 flex items-center justify-between border-b border-[#454545] pb-4">
                 <div>
                   <h2 className="text-xl font-bold tracking-wider text-[#FF7E05] uppercase">
                     Novo Evento
